@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madurez Digital | Alonso & Espinosa</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+background:#f3f5f7;
+margin:0;
+padding:0;
+color:#1f2a36;
+}
+
+.contenedor{
+max-width:800px;
+margin:auto;
+padding:40px 20px;
+}
+
+.tarjeta{
+background:white;
+border-radius:14px;
+padding:30px;
+box-shadow:0 4px 18px rgba(0,0,0,0.08);
+margin-bottom:20px;
+}
+
+h1{
+margin-top:0;
+color:#1a2a3a;
+}
+
+.pregunta{
+margin-top:25px;
+}
+
+select{
+width:100%;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+margin-top:8px;
+}
+
+button{
+margin-top:30px;
+background:#1a2a3a;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.resultado{
+margin-top:30px;
+padding:20px;
+border-radius:10px;
+background:#eef2f6;
+display:none;
+}
+
+.nivel{
+font-size:18px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.contacto{
+margin-top:20px;
+padding-top:15px;
+border-top:1px solid #ccc;
+}
+
+.btn-contacto{
+display:inline-block;
+margin-top:10px;
+background:#1a2a3a;
+color:white;
+padding:10px 16px;
+border-radius:6px;
+text-decoration:none;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<div class="tarjeta">
+
+<h1>Evaluador de madurez digital</h1>
+
+<p>
+Esta evaluación breve permite identificar el nivel de organización digital de la empresa,
+la integración entre herramientas y la capacidad de seguimiento interno.
+</p>
+
+<div class="pregunta">
+<label>¿Cómo se gestiona la documentación habitual?</label>
+<select id="q1">
+<option value="0">Está centralizada y ordenada</option>
+<option value="1">Está repartida entre varias carpetas o canales</option>
+<option value="2">Cuesta localizarla con rapidez</option>
+</select>
+</div>
+
+<div class="pregunta">
+<label>¿Qué grado de integración hay entre las herramientas que utilizáis?</label>
+<select id="q2">
+<option value="0">Las herramientas están bastante integradas</option>
+<option value="1">Hay varias herramientas, pero sin conexión clara</option>
+<option value="2">Se trabaja sobre todo de forma manual o dispersa</option>
+</select>
+</div>
+
+<div class="pregunta">
+<label>¿Cómo se hace el seguimiento de tareas o incidencias?</label>
+<select id="q3">
+<option value="0">Con sistema claro y trazable</option>
+<option value="1">Con seguimiento parcial</option>
+<option value="2">Depende de mensajes, llamadas o memoria</option>
+</select>
+</div>
+
+<div class="pregunta">
+<label>¿Cómo se comparte la información dentro del equipo?</label>
+<select id="q4">
+<option value="0">De forma ordenada y accesible</option>
+<option value="1">A veces cuesta saber dónde está la información</option>
+<option value="2">Se pierde o se duplica con frecuencia</option>
+</select>
+</div>
+
+<div class="pregunta">
+<label>¿Qué nivel de visibilidad tenéis sobre el estado del trabajo?</label>
+<select id="q5">
+<option value="0">Alta visibilidad</option>
+<option value="1">Visibilidad parcial</option>
+<option value="2">Baja visibilidad o seguimiento reactivo</option>
+</select>
+</div>
+
+<div class="pregunta">
+<label>¿Las herramientas actuales ayudan realmente al equipo?</label>
+<select id="q6">
+<option value="0">Sí, facilitan el trabajo</option>
+<option value="1">Solo en parte</option>
+<option value="2">No, generan fricción o retrabajo</option>
+</select>
+</div>
+
+<button onclick="calcular()">Ver resultado</button>
+
+<div class="resultado" id="resultado"></div>
+
+<div style="margin-top:20px;">
+<a href="index.html" style="text-decoration:none;color:#1a2a3a;font-weight:bold;">
+← Volver a herramientas
+</a>
+</div>
+
+</div>
+
+</div>
+
+<script>
+function calcular(){
+
+let total = 0;
+
+for(let i=1;i<=6;i++){
+total += parseInt(document.getElementById("q"+i).value);
+}
+
+let nivel="";
+let texto="";
+
+if(total <=3){
+
+nivel="🟢 Madurez digital razonablemente estructurada";
+
+texto="La empresa parece contar con una base digital bastante ordenada. Aun así, puede haber margen de mejora en integración, seguimiento o simplificación de herramientas.";
+
+}
+
+else if(total <=7){
+
+nivel="🟠 Sistemas fragmentados o parcialmente estructurados";
+
+texto="Se observan señales de organización digital mejorable. Puede haber dispersión de información, seguimiento incompleto o herramientas que no terminan de apoyar el trabajo diario.";
+
+}
+
+else{
+
+nivel="🔴 Riesgo operativo por falta de estructura digital";
+
+texto="Existen varias señales de desorden digital, herramientas poco conectadas o baja trazabilidad interna. Una revisión más profunda podría mejorar mucho la coordinación y la visibilidad del trabajo.";
+
+}
+
+document.getElementById("resultado").style.display="block";
+
+document.getElementById("resultado").innerHTML = `
+<div class="nivel">${nivel}</div>
+<p>${texto}</p>
+
+<div class="contacto">
+<strong>¿Quieres profundizar en este análisis?</strong>
+
+<p>
+En Alonso & Espinosa revisamos la organización digital interna para detectar puntos de fricción,
+mejorar el seguimiento y ordenar herramientas, información y procesos.
+</p>
+
+<a class="btn-contacto"
+href="https://forms.gle/wpVuwgG6G656S4ss7"
+target="_blank">
+Continuar con la solicitud
+</a>
+
+<p style="margin-top:12px; font-size:14px; line-height:1.5;">
+Si prefieres una vía más directa, también puedes escribirnos a
+<strong>conchialonsogarcia5@gmail.com</strong>
+indicando que has completado el evaluador de madurez digital.
+</p>
+</div>
+`;
+
+}
+</script>
+
+</body>
+</html>
