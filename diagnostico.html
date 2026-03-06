@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Operativo | Alonso & Espinosa</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+background:#f3f5f7;
+margin:0;
+padding:0;
+color:#1f2a36;
+}
+
+.contenedor{
+max-width:800px;
+margin:auto;
+padding:40px 20px;
+}
+
+.tarjeta{
+background:white;
+border-radius:14px;
+padding:30px;
+box-shadow:0 4px 18px rgba(0,0,0,0.08);
+margin-bottom:20px;
+}
+
+h1{
+margin-top:0;
+color:#1a2a3a;
+}
+
+.pregunta{
+margin-top:25px;
+}
+
+select{
+width:100%;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+margin-top:8px;
+}
+
+button{
+margin-top:30px;
+background:#1a2a3a;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.resultado{
+margin-top:30px;
+padding:20px;
+border-radius:10px;
+background:#eef2f6;
+display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<div class="tarjeta">
+
+<h1>Diagnóstico operativo rápido</h1>
+
+<p>
+Esta evaluación breve permite identificar posibles señales de desorden operativo,
+falta de estructura en procesos o dependencia excesiva de personas clave.
+</p>
+
+<div class="pregunta">
+<label>Tamaño del equipo</label>
+<select id="q1">
+<option value="0">1-5 personas</option>
+<option value="1">6-20 personas</option>
+<option value="2">Más de 20 personas</option>
+</select>
+</div>
+
+<div class="pregunta">
+<label>¿Cómo se organizan las tareas?</label>
+<select id="q2">
+<option value="0">Con procesos claros</option>
+<option value="1">Parcialmente definidos</option>
+<option value="2">Depende de cada persona</option>
+</select>
+</div>
+
+<div class="pregunta">
+<label>¿Tenéis procesos documentados?</label>
+<select id="q3">
+<option value="0">Sí</option>
+<option value="1">Solo algunos</option>
+<option value="2">No</option>
+</select>
+</div>
+
+<div class="pregunta">
+<label>Uso de herramientas digitales</label>
+<select id="q4">
+<option value="0">Herramientas integradas</option>
+<option value="1">Varias herramientas sin conexión</option>
+<option value="2">Principalmente manual</option>
+</select>
+</div>
+
+<div class="pregunta">
+<label>¿Se duplican tareas administrativas?</label>
+<select id="q5">
+<option value="0">No</option>
+<option value="1">A veces</option>
+<option value="2">Frecuentemente</option>
+</select>
+</div>
+
+<div class="pregunta">
+<label>Dependencia de personas clave</label>
+<select id="q6">
+<option value="0">No</option>
+<option value="1">Algo</option>
+<option value="2">Alta dependencia</option>
+</select>
+</div>
+
+<button onclick="calcular()">Ver resultado</button>
+
+<div class="resultado" id="resultado"></div>
+
+</div>
+
+</div>
+
+<script>
+
+function calcular(){
+
+let total = 0;
+
+for(let i=1;i<=6;i++){
+total += parseInt(document.getElementById("q"+i).value);
+}
+
+let texto="";
+
+if(total <=3){
+texto = "La organización operativa parece razonablemente estructurada. Aun así, siempre existen oportunidades de optimización.";
+}
+
+else if(total <=7){
+texto = "Se detectan algunas señales de desorden operativo o falta de estandarización. Podría ser recomendable revisar procesos internos.";
+}
+
+else{
+texto = "Existen varias señales de desorganización operativa o dependencia excesiva de personas clave. Un diagnóstico más profundo podría aportar mejoras relevantes.";
+}
+
+document.getElementById("resultado").style.display="block";
+document.getElementById("resultado").innerHTML = texto;
+
+}
+
+</script>
+
+</body>
+</html>
